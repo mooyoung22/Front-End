@@ -6,9 +6,9 @@
     , initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
+
     <h2>sampla form</h2>
-    <form id="myform" action="#"></form>
+<form id="myform" action="#">
     <label for="name">Name</label><br>
     <input type="text" id="name" name="name"><br>
 
@@ -19,13 +19,19 @@
     <input type="number" id="age" name="age"><br>
    
     <label for="gender">gender</label><br>
-    <input type="radio" id="mail" name="mail">
+    <input type="radio" id="mail" name="gender" value="mail">
 
     <label for="name">mail</label>
-    <input type="radio" id="famail" name="famail">
+    <input type="radio" id="famail" name="gender" value="famail">
 
-    <label for="name">famail</label>
-    
-    
+    <label for="name">famail</label><br>
+    <label for="comments">comments</label><br>
+    <textarea id="comments" name="comments" rows="10" cols="50" > </textarea><br>
+
+    <input type="submit"value="submit">
+</form>
+    <div id="result"></div>
+    <script src="app.js"></script>
+
 </body>
 </html>
