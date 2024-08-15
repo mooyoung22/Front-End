@@ -9,4 +9,5 @@ document.getElementById("myform").addEventListener("submit", function (event){
  formdata.get("gender")+"<br>" + "Comments:"+
  formdata.get("Comments");
  document.getElementById("result").innerHTML="<h1> My data </h1>"+result;
+ 
 })
