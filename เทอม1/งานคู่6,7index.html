@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Calculator</title>
+    <style>
+         body {
+            background-image: url('https://img.pikbest.com/back_our/bg/20200630/bg/b2b1dfe787eb7_340649.jpg'); /* ระบุเส้นทางของภาพพื้นหลังที่นี่ */
+            background-size: cover; /* ขยายภาพพื้นหลังให้ครอบคลุมทั้งหน้า */
+            
+         }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #0d3b6d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #144981;
+        }
+        .result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Loan Calculator</h1>
+        <label for="principal">จำนวนเงินกู้ (บาท):</label>
+        <input type="number" id="principal" placeholder="จำนวนเงินกู้" required>
+
+        <label for="interestRate">อัตราดอกเบี้ยประจำปี (%):</label>
+        <input type="number" id="interestRate" placeholder="อัตราดอกเบี้ย" step="0.01" required>
+
+        <label for="numPayments">จำนวนงวดที่ต้องการผ่อน (เดือน):</label>
+        <input type="number" id="numPayments" placeholder="จำนวนงวด" required>
+
+        <button onclick="calculateMonthlyPayment()">คำนวณ</button>
+
+        <div class="result">
+            <h2>ผลลัพธ์</h2>
+            <p id="monthlyPayment">การผ่อนชำระต่อเดือน: --- บาท</p>
+        </div>
+    </div>
+
+    <script>
+        function calculateMonthlyPayment() {
+            // รับข้อมูลจากฟอร์ม
+            const principal = parseFloat(document.getElementById('principal').value);
+            const annualInterestRate = parseFloat(document.getElementById('interestRate').value);
+            const numPayments = parseInt(document.getElementById('numPayments').value, 10);
+
+            // แปลงอัตราดอกเบี้ยประจำปีเป็นอัตราดอกเบี้ยรายเดือน
+            const monthlyInterestRate = annualInterestRate / 12 / 100;
+
+            let monthlyPayment;
+
+            if (monthlyInterestRate === 0) {
+                // กรณีไม่มีดอกเบี้ย
+                monthlyPayment = principal / numPayments;
+            } else {
+                // ใช้สูตรการคำนวณการผ่อนชำระเงินกู้
+                monthlyPayment = (principal * monthlyInterestRate) / (1 - Math.pow(1 + monthlyInterestRate, -numPayments));
+            }
+
+            // แสดงผลลัพธ์
+            document.getElementById('monthlyPayment').textContent = `การผ่อนชำระต่อเดือน: ${monthlyPayment.toFixed(2)} บาท`;
+        }
+    </script>
+</body>
+</html>
